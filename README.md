@@ -97,3 +97,7 @@ npm run test:desktop
 `npm test` 使用临时的真实 PostgreSQL，验证并发、回滚、校验等行为，不碰你的开发数据。`test:desktop` 会打开测试用 Electron 窗口，实际点击下单，再自动关闭；需要桌面环境，截图位于 `artifacts/`。
 
 完整讲解：**[学习与发布指南](docs/学习与发布指南.md)**。验收范围：[验证清单](docs/验证清单.md)。
+
+## 6. 发布为网页
+
+已增加 **[Netlify 部署方案](docs/Netlify部署.md)**：React 网页、Netlify Functions 与托管 PostgreSQL 可以一起部署，无需 Docker。网页与 Electron 共用相同的下单业务代码；桌面安装包仍通过 `npm run dist` 单独生成。

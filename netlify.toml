@@ -1,0 +1,30 @@
+# Netlify 只构建网页和云函数；Electron 安装包仍由 electron-builder 生成。
+[build]
+  command = "npm run build:web"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "24"
+  ELECTRON_SKIP_BINARY_DOWNLOAD = "1"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@netlify/database"]
+
+# 浏览器和 Electron 都可访问同一组 HTTPS API，不需要跨域暴露数据库。
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/shop-api/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

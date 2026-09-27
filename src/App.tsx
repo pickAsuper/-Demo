@@ -295,7 +295,8 @@ export default function App() {
         <span>拾物商店</span>
         <span>让日常，多一点喜欢</span>
         <span className="titlebar-version">
-          桌面版 {config?.version || "0.1.0"}
+          {window.shopDesktop ? "桌面版" : "网页版"}{" "}
+          {config?.version || "0.1.0"}
         </span>
       </div>
       <aside className="sidebar">
@@ -744,8 +745,8 @@ export default function App() {
               </p>
               {!config && (
                 <p className="inline-info">
-                  当前为浏览器预览，API 由 Vite 代理。请在 Electron
-                  桌面端修改连接设置。
+                  网页版自动连接当前网站的商店服务，无需修改地址。 Electron
+                  桌面端可在这里切换到已部署的网站。
                 </p>
               )}
               {settingsError && (

@@ -18,7 +18,7 @@ export async function api<T>(
       throw new Error((response.data as { error: string }).error);
     return response.data as T;
   }
-  // 浏览器预览走 Vite 的同源代理；打包后的 Electron 走受限 IPC。
+  // 浏览器走同源 /api：本地由 Vite 代理，Netlify 上由云函数处理。
   let response: Response;
   try {
     response = await fetch(`/api${path}`, {
@@ -35,6 +35,10 @@ export async function api<T>(
     });
   } catch {
     throw new Error("无法连接商店服务，请启动 API 后重试");
+  }
+  // 部署遗漏 API 时平台可能返回 HTML 错误页，转换成可理解的提示。
+  if (!response.headers.get("content-type")?.includes("application/json")) {
+    throw new Error("商店接口尚未就绪，请稍后重试或联系部署者");
   }
   const data = await response.json();
   if (!response.ok) throw new Error(data.error || "服务暂时不可用");

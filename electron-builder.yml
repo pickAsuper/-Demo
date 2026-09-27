@@ -1,0 +1,33 @@
+appId: dev.monoshop.desktop
+productName: Mono Shop
+directories:
+  output: release
+files:
+  - dist/**/*
+  - electron/**/*
+  - package.json
+extraResources:
+  - from: dist/client-config.json
+    to: client-config.json
+asar: true
+mac:
+  category: public.app-category.lifestyle
+  target:
+    - dmg
+    - zip
+  identity: null
+  icon: build/icon.icns
+win:
+  target:
+    - nsis
+  icon: build/icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Office
+  icon: build/icon.png

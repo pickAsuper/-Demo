@@ -1,0 +1,80 @@
+name: 构建桌面安装包（发布草稿）
+on:
+  workflow_dispatch:
+    inputs:
+      api_url:
+        description: 已部署且通过 HTTPS 访问的 API 根地址
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+        env:
+          SHOP_API_URL: ${{ inputs.api_url }}
+  package:
+    needs: validate
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # 教学默认生成未签名安装包。正式发布前按教程配置证书与签名。
+      - run: npm run dist
+        env:
+          SHOP_API_URL: ${{ inputs.api_url }}
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installer-${{ matrix.os }}
+          path: |
+            release/*.dmg
+            release/*.zip
+            release/*.exe
+            release/*.AppImage
+            release/*.deb
+          if-no-files-found: error
+  draft:
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: installer-*
+          path: installers
+          merge-multiple: true
+      - name: 读取版本号
+        id: version
+        run: node -e "console.log('value=v'+require('./package.json').version)" >> "$GITHUB_OUTPUT"
+      - name: 生成 SHA256 校验文件
+        run: cd installers && sha256sum * > SHA256SUMS.txt
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.value }}
+          target_commitish: ${{ github.sha }}
+          name: 拾物商店 ${{ steps.version.outputs.value }}
+          draft: true
+          body: |
+            教学版安装包，未签名。不含真实支付或自动更新。
+            请在对应平台完成安装测试，并阅读项目中的发布指南。
+          files: installers/*

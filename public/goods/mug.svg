@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="340" viewBox="0 0 400 340"><defs>
+  <filter id="shadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#35405c" flood-opacity=".19"/></filter>
+  <linearGradient id="white" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#cdd3dc"/></linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8499c5"/><stop offset="1" stop-color="#4d638f"/></linearGradient>
+  <linearGradient id="lavender" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#afaabe"/><stop offset="1" stop-color="#747184"/></linearGradient>
+  <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8b6a1"/><stop offset="1" stop-color="#647b65"/></linearGradient>
+  <linearGradient id="clay" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4aa93"/><stop offset="1" stop-color="#af7961"/></linearGradient>
+</defs><g filter="url(#shadow)" transform="rotate(-9 200 180)"><path d="M266 135q83-7 55 69-16 34-54 25" fill="none" stroke="#b0806b" stroke-width="19"/><path d="M266 132q76-7 52 67-14 32-49 22" fill="none" stroke="#d6af98" stroke-width="12"/><path d="M112 115h169l-10 133q-8 42-75 42t-76-42z" fill="url(#clay)"/><ellipse cx="196" cy="115" rx="85" ry="25" fill="#dec0aa"/><ellipse cx="196" cy="117" rx="72" ry="17" fill="#9d7159"/><path d="M129 143l6 94q3 22 20 28" fill="none" stroke="#e3c1ac" stroke-width="5" opacity=".5"/><path d="M199 56q-14 15-3 29" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".5"/></g></svg>

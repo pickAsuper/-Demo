@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="340" viewBox="0 0 400 340"><defs>
+  <filter id="shadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#35405c" flood-opacity=".19"/></filter>
+  <linearGradient id="white" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#cdd3dc"/></linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8499c5"/><stop offset="1" stop-color="#4d638f"/></linearGradient>
+  <linearGradient id="lavender" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#afaabe"/><stop offset="1" stop-color="#747184"/></linearGradient>
+  <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8b6a1"/><stop offset="1" stop-color="#647b65"/></linearGradient>
+  <linearGradient id="clay" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4aa93"/><stop offset="1" stop-color="#af7961"/></linearGradient>
+</defs><defs><pattern id="mesh" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="#4b5265" opacity=".45"/></pattern></defs><g filter="url(#shadow)"><rect x="98" y="90" width="206" height="186" rx="64" fill="#858b9c"/><rect x="98" y="90" width="206" height="175" rx="62" fill="#a4aabb"/><rect x="98" y="90" width="206" height="175" rx="62" fill="url(#mesh)"/><ellipse cx="201" cy="104" rx="62" ry="10" fill="#c0c4d0"/><path d="M178 103h7M198 100v7M194 104h8M219 103h6" stroke="#8b93a7" stroke-width="2"/><rect x="173" y="230" width="56" height="14" rx="5" fill="#9098aa"/><text x="201" y="240" text-anchor="middle" font-family="sans-serif" font-size="6" letter-spacing="2" fill="#d8dce5">PEBBLE</text></g></svg>

@@ -1,0 +1,8 @@
+{
+    email {$ACME_EMAIL}
+}
+
+{$SHOP_DOMAIN} {
+    # Caddy 自动申请与续期 HTTPS 证书，然后转发到内部 API。
+    reverse_proxy api:3001
+}

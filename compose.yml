@@ -1,0 +1,19 @@
+# 本地学习的备选方案：使用 Docker 替代 embedded-postgres。
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: mono_shop
+      POSTGRES_USER: shop
+      POSTGRES_PASSWORD: shop_local_only
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - shop_dev_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shop -d mono_shop"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  shop_dev_data:
